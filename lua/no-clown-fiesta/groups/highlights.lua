@@ -1,30 +1,44 @@
 local M = {}
 
 function M.highlight(palette, opts)
+	local bg_bg = opts.transparent and palette.none or palette.bg
+	local bg_gray = opts.transparent and palette.none or palette.gray
+	local bg_blue = opts.transparent and palette.none or palette.blue
+	local bg_orange = opts.transparent and palette.none or palette.orange
+	local bg_alt_bg = opts.transparent and palette.none or palette.alt_bg
+	local bg_accent = opts.transparent and palette.none or palette.accent
+	local bg_yellow = opts.transparent and palette.none or palette.yellow
+	local bg_cursor_bg = opts.transparent and palette.none or palette.cursor_bg
+	local bg_light_gray = opts.transparent and palette.none or palette.light_gray
+	local bg_accent_red = opts.transparent and palette.none or palette.accent_red
+	local bg_accent_blue = opts.transparent and palette.none or palette.accent_blue
+	local bg_accent_green = opts.transparent and palette.none or palette.accent_green
+	local bg_accent_lighter_blue = opts.transparent and palette.none or palette.accent_lighter_blue
+
   return {
     Normal = {
       fg = palette.fg,
-      bg = opts.transparent and palette.none or palette.bg,
+      bg = palette.bg,
     },
-    SignColumn = { bg = opts.transparent and palette.none or palette.bg },
+    SignColumn = { bg = palette.bg },
     MsgArea = {
       fg = palette.fg,
-      bg = opts.transparent and palette.none or palette.bg,
+      bg = palette.bg,
     },
-    ModeMsg = { fg = palette.fg, bg = palette.bg },
-    MsgSeparator = { fg = palette.fg, bg = palette.bg },
+    ModeMsg = { fg = palette.fg, bg = bg_bg },
+    MsgSeparator = { fg = palette.fg, bg = bg_bg },
     SpellBad = { sp = palette.error, undercurl = true },
     SpellCap = { sp = palette.yellow, undercurl = true },
     SpellLocal = { sp = palette.sign_add, undercurl = true },
     SpellRare = { sp = palette.purple, undercurl = true },
     NormalNC = {
       fg = palette.fg,
-      bg = opts.transparent and palette.none or palette.bg,
+      bg = palette.bg,
     },
-    Pmenu = { fg = palette.light_gray, bg = palette.accent },
-    PmenuSel = { bg = palette.blue, fg = palette.gray, reverse = true },
-    PmenuMatchSel = { bg = palette.yellow, fg = palette.gray, reverse = true },
-    WildMenu = { fg = palette.blue, bg = palette.alt_bg },
+    Pmenu = { fg = palette.light_gray, bg = bg_accent },
+    PmenuSel = { bg = bg_blue, fg = palette.gray, reverse = true },
+    PmenuMatchSel = { bg = bg_yellow, fg = palette.gray, reverse = true },
+    WildMenu = { fg = palette.blue, bg = bg_alt_bg },
     CursorLineNr = {
       fg = palette.light_gray,
       bold = true,
@@ -34,49 +48,49 @@ function M.highlight(palette, opts)
       { fg = palette.medium_gray },
       opts.styles.comments
     ),
-    Folded = { fg = palette.light_gray, bg = palette.alt_bg },
-    FoldColumn = { fg = palette.light_gray, bg = palette.alt_bg },
+    Folded = { fg = palette.light_gray, bg = bg_alt_bg },
+    FoldColumn = { fg = palette.light_gray, bg = bg_alt_bg },
     LineNr = { fg = palette.medium_gray },
     Whitespace = { fg = palette.gray },
-    VertSplit = { fg = palette.bg, bg = palette.accent },
+    VertSplit = { fg = palette.bg, bg = bg_accent },
     CursorLine = {
+      bg = bg_alt_bg,
+    },
+    CursorColumn = { bg = bg_alt_bg },
+    ColorColumn = { bg = bg_alt_bg },
+    NormalFloat = {
       bg = palette.alt_bg,
     },
-    CursorColumn = { bg = palette.alt_bg },
-    ColorColumn = { bg = palette.alt_bg },
-    NormalFloat = {
-      bg = opts.transparent and palette.none or palette.alt_bg,
-    },
-    Visual = { bg = palette.gray },
-    VisualNOS = { bg = palette.alt_bg },
-    WarningMsg = { fg = palette.error, bg = palette.bg },
-    DiffAdd = { bg = palette.accent_green },
-    DiffText = { fg = palette.fg, bg = palette.accent_lighter_blue },
+    Visual = { bg = bg_gray },
+    VisualNOS = { bg = bg_alt_bg },
+    WarningMsg = { fg = palette.error, bg = bg_bg },
+    DiffAdd = { bg = bg_accent_green },
+    DiffText = { fg = palette.fg, bg = bg_accent_lighter_blue },
     Changed = {
       fg = palette.sign_change,
     },
     DiffChange = {
       fg = palette.sign_change,
-      bg = palette.accent_blue,
+      bg = bg_accent_blue,
     },
-    DiffDelete = { fg = palette.sign_delete, bg = palette.accent_red },
-    QuickFixLine = { bg = palette.accent },
-    PmenuSbar = { bg = palette.alt_bg },
-    PmenuThumb = { bg = palette.light_gray },
+    DiffDelete = { fg = palette.sign_delete, bg = bg_accent_red },
+    QuickFixLine = { bg = bg_accent },
+    PmenuSbar = { bg = bg_alt_bg },
+    PmenuThumb = { bg = bg_light_gray },
     MatchWord = { underline = true },
     MatchParen = vim.tbl_extend(
       "force",
-      { fg = palette.blue, bg = palette.bg, underline = true },
+      { fg = palette.blue, bg = bg_bg, underline = true },
       opts.styles.match_paren
     ),
     MatchWordCur = { underline = true },
     MatchParenCur = { underline = true },
-    Cursor = { fg = palette.cursor_fg, bg = palette.cursor_bg },
-    lCursor = { fg = palette.cursor_fg, bg = palette.cursor_bg },
-    CursorIM = { fg = palette.cursor_fg, bg = palette.cursor_bg },
+    Cursor = { fg = palette.cursor_fg, bg = bg_cursor_bg },
+    lCursor = { fg = palette.cursor_fg, bg = bg_cursor_bg },
+    CursorIM = { fg = palette.cursor_fg, bg = bg_cursor_bg },
     TermCursor = {
       fg = palette.cursor_fg,
-      bg = palette.cursor_bg,
+      bg = bg_cursor_bg,
       reverse = false,
     },
     TermCursorNC = {
@@ -87,10 +101,10 @@ function M.highlight(palette, opts)
     Directory = { fg = palette.blue },
     SpecialKey = { fg = palette.blue },
     Title = { fg = palette.blue },
-    ErrorMsg = { fg = palette.error, bg = palette.bg, bold = true },
-    Search = { fg = palette.orange, bg = palette.alt_bg },
-    IncSearch = { fg = palette.alt_bg, bg = palette.orange },
-    Substitute = { fg = palette.alt_bg, bg = palette.orange },
+    ErrorMsg = { fg = palette.error, bg = bg_bg, bold = true },
+    Search = { fg = palette.orange, bg = bg_alt_bg },
+    IncSearch = { fg = palette.alt_bg, bg = bg_orange },
+    Substitute = { fg = palette.alt_bg, bg = bg_orange },
     MoreMsg = { fg = palette.cyan },
     Question = { fg = palette.cyan },
     EndOfBuffer = { fg = palette.gray },
@@ -133,13 +147,13 @@ function M.highlight(palette, opts)
     Underlined = { underline = true },
     Bold = { bold = true },
     Italic = { italic = true },
-    Ignore = { fg = palette.cyan, bg = palette.bg, bold = true },
-    Todo = { fg = palette.red, bg = palette.bg, bold = true },
-    Error = { fg = palette.error, bg = palette.bg, bold = true },
-    TabLine = { fg = palette.gray, bg = palette.alt_bg },
-    TabLineSel = { fg = palette.fg, bg = palette.alt_bg },
-    TabLineFill = { fg = palette.fg, bg = palette.alt_bg },
-    WinSeparator = { fg = palette.medium_gray, bg = palette.bg },
+    Ignore = { fg = palette.cyan, bg = bg_bg, bold = true },
+    Todo = { fg = palette.red, bg = bg_bg, bold = true },
+    Error = { fg = palette.error, bg = bg_bg, bold = true },
+    TabLine = { fg = palette.gray, bg = bg_alt_bg },
+    TabLineSel = { fg = palette.fg, bg = bg_alt_bg },
+    TabLineFill = { fg = palette.fg, bg = bg_alt_bg },
+    WinSeparator = { fg = palette.medium_gray, bg = bg_bg },
     DiagnosticFloatingError = { fg = palette.error },
     FloatBorder = { fg = palette.light_gray },
   }
