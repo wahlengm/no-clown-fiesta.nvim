@@ -1,29 +1,27 @@
+
 local M = {}
 
 function M.highlight(palette, opts)
-	local bg_bg = opts.transparent and palette.none or palette.bg
-	local bg_gray = opts.transparent and palette.none or palette.gray
-	local bg_blue = opts.transparent and palette.none or palette.blue
-	local bg_orange = opts.transparent and palette.none or palette.orange
-	local bg_alt_bg = opts.transparent and palette.none or palette.alt_bg
-	local bg_accent = opts.transparent and palette.none or palette.accent
-	local bg_yellow = opts.transparent and palette.none or palette.yellow
-	local bg_cursor_bg = opts.transparent and palette.none or palette.cursor_bg
-	local bg_light_gray = opts.transparent and palette.none or palette.light_gray
-	local bg_accent_red = opts.transparent and palette.none or palette.accent_red
-	local bg_accent_blue = opts.transparent and palette.none or palette.accent_blue
-	local bg_accent_green = opts.transparent and palette.none or palette.accent_green
-	local bg_accent_lighter_blue = opts.transparent and palette.none or palette.accent_lighter_blue
+  local bg_bg = opts.transparent and "none" or palette.bg
+  local bg_blue = opts.transparent and "none" or palette.blue
+  local bg_alt_bg = opts.transparent and "none" or palette.alt_bg
+  local bg_accent = opts.transparent and "none" or palette.accent
+  local bg_yellow = opts.transparent and "none" or palette.yellow
+  local bg_light_gray = opts.transparent and "none" or palette.light_gray
+  local bg_accent_red = opts.transparent and "none" or palette.accent_red
+  local bg_accent_blue = opts.transparent and "none" or palette.accent_blue
+  local bg_accent_green = opts.transparent and "none" or palette.accent_green
+  local bg_accent_lighter_blue = opts.transparent and "none" or palette.accent_lighter_blue
 
   return {
     Normal = {
       fg = palette.fg,
-      bg = palette.bg,
+      bg = bg_bg,
     },
-    SignColumn = { bg = palette.bg },
+    SignColumn = { bg = bg_bg },
     MsgArea = {
       fg = palette.fg,
-      bg = palette.bg,
+      bg = bg_bg,
     },
     ModeMsg = { fg = palette.fg, bg = bg_bg },
     MsgSeparator = { fg = palette.fg, bg = bg_bg },
@@ -33,7 +31,7 @@ function M.highlight(palette, opts)
     SpellRare = { sp = palette.purple, undercurl = true },
     NormalNC = {
       fg = palette.fg,
-      bg = palette.bg,
+      bg = bg_bg,
     },
     Pmenu = { fg = palette.light_gray, bg = bg_accent },
     PmenuSel = { bg = bg_blue, fg = palette.gray, reverse = true },
@@ -59,10 +57,10 @@ function M.highlight(palette, opts)
     CursorColumn = { bg = bg_alt_bg },
     ColorColumn = { bg = bg_alt_bg },
     NormalFloat = {
-      bg = palette.alt_bg,
+      bg = bg_alt_bg,
     },
-    Visual = { bg = bg_gray },
-    VisualNOS = { bg = bg_alt_bg },
+    Visual = { bg = palette.gray },
+    VisualNOS = { bg = palette.alt_bg },
     WarningMsg = { fg = palette.error, bg = bg_bg },
     DiffAdd = { bg = bg_accent_green },
     DiffText = { fg = palette.fg, bg = bg_accent_lighter_blue },
@@ -85,12 +83,12 @@ function M.highlight(palette, opts)
     ),
     MatchWordCur = { underline = true },
     MatchParenCur = { underline = true },
-    Cursor = { fg = palette.cursor_fg, bg = bg_cursor_bg },
-    lCursor = { fg = palette.cursor_fg, bg = bg_cursor_bg },
-    CursorIM = { fg = palette.cursor_fg, bg = bg_cursor_bg },
+    Cursor = { fg = palette.cursor_fg, bg = palette.cursor_bg },
+    lCursor = { fg = palette.cursor_fg, bg = palette.cursor_bg },
+    CursorIM = { fg = palette.cursor_fg, bg = palette.cursor_bg },
     TermCursor = {
       fg = palette.cursor_fg,
-      bg = bg_cursor_bg,
+      bg = palette.cursor_bg,
       reverse = false,
     },
     TermCursorNC = {
@@ -103,8 +101,8 @@ function M.highlight(palette, opts)
     Title = { fg = palette.blue },
     ErrorMsg = { fg = palette.error, bg = bg_bg, bold = true },
     Search = { fg = palette.orange, bg = bg_alt_bg },
-    IncSearch = { fg = palette.alt_bg, bg = bg_orange },
-    Substitute = { fg = palette.alt_bg, bg = bg_orange },
+    IncSearch = { fg = palette.alt_bg, bg = palette.orange },
+    Substitute = { fg = palette.alt_bg, bg = palette.orange },
     MoreMsg = { fg = palette.cyan },
     Question = { fg = palette.cyan },
     EndOfBuffer = { fg = palette.gray },

@@ -6,7 +6,7 @@ function M.highlight(palette, opts)
       fg = palette.fg,
       bg = opts.transparent and palette.none or palette.bg,
     },
-    TelescopeSelection = { fg = palette.fg, bg = palette.accent },
+    TelescopeSelection = { fg = palette.fg, bg = palette.purple },
     TelescopeMatching = { fg = palette.orange, bold = true },
     TelescopeBorder = {
       fg = palette.light_gray,
